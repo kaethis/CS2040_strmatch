@@ -297,8 +297,6 @@ class StringMatcher(): # ------------------------------------------------------
 
             return True         # Indicate algorithm complete (w/ no match).
 
-        return False
-
 
 def generateBadSymbolTable(seq: str, ptn: str) -> Dict[str, int]: # ----------
     """ This FUNCTION generates bad-symbol table for the alphabet of a sequence
