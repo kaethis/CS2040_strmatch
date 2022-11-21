@@ -15,6 +15,9 @@ The contents of this repository include the following files:
     README.md       # this file
     driver.py       # for executing the program
     example1.txt    # quote from Morpheus in "The Matrix" (1999)
+    file1.txt       # sequence provided by professor (pattern is "abracadabra")
+    file2.txt       # sequence provided by professor (pattern is "hat_that")
+    file3.txt       # sequence provided by professor (pattern is "ABCABAB")
     strmatch.py     # implementation and data structures for string match
     util.py         # helper functions
 ```
@@ -51,7 +54,6 @@ options:
                     HORSPOOL or BOYERMOORE) (default is BRUTEFORCE algorithm)
 
 ~created by @kaethis
-
 ```
 
 ---

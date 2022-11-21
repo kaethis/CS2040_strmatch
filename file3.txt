@@ -1,0 +1,1 @@
+the pattern that we are searching for is a bunch of upper case letters. It is made up of the letters A,B and C. The pattern is ABCABAB.
