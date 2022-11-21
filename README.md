@@ -56,8 +56,6 @@ options:
 ~created by @kaethis
 ```
 
-https://github.com/kaethis/CS2040_strmatch/blob/master/videos/boyermoore.mp4
-
 ---
 ### Links
 Here are some resources I found useful when developing this program:
