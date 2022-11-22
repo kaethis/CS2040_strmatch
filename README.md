@@ -68,12 +68,17 @@ A shift table of distances and corresponding chars from the alphabet used by the
 
 Finally, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using the Boyer-Moore string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm BOYERMOORE`.
 
-Similar to Horspool's algorithm, a bad-symbol table of shift distances and corresponding chars from the alphabet, in addition to a good-suffix table of shift distances and corresponding length of the suffix, are displayed above the sequence of chars.  One or more chars in the pattern that match with chars in the sequence are highlighted green and called the suffix and its length is highlighted blue in the good-suffix table.  The char undergoing comparison in the sequence is highlighted blue in the bad-symbol table.  If a mismatch occurs with no suffix, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern from the bad-symbol table.
+Similar to Horspool's algorithm, a bad-symbol table of shift distances and corresponding chars from the alphabet, in addition to a good-suffix table of shift distances and corresponding length of the suffix, are displayed above the sequence of chars.  One or more chars in the pattern that match with chars in the sequence, called the suffix, are highlighted green and its length is highlighted blue in the good-suffix table.  The char undergoing comparison in the sequence is highlighted blue in the bad-symbol table.  If a mismatch occurs with no suffix, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern from the bad-symbol table (same as Horspool's algorithm).
 
-If a mismatch occurs and `0 < k < m` chars matched, whereby `k` is the length of the suffix and `m` is the length of the pattern, the pattern is shifted by `d` chars, whereby `d = max(d1, d2)`, `d1 = max((t1 - k), 1)`, `t1` is the shift distance of the corresponding char that caused the mismatch from the bad-symbol table and `d2` is the shift distance of the corresponding suffix length from the good-suffix table.  The distances in the bad-symbol table are displayed as `d1` to reflect these values in such cases.
+If a mismatch occurs and `0 < k < m` chars matched, whereby `k` is the length of the suffix and `m` is the length of the pattern, the pattern is shifted by `d` chars, whereby `d = max(d1, d2)`, `d1 = max((t1 - k), 1)`, `t1` is the shift distance of the corresponding char that caused the mismatch from the bad-symbol table and `d2` is the shift distance of the corresponding suffix length from the good-suffix table.  The distances in the bad-symbol table are displayed as `d1` to reflect these values in such cases.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence or no more remaining chars are left in the sequence.
 
-
-
+Upon terminating, the program will output `no occurrence of pattern in sequence` to the console if no match occurred.  Otherwise, the program outputs the index of the first occurrence of the pattern in the sequence of chars.  Regardless of the algorithm chosen or whether a match occurred, the program also outputs the number of steps ensued by the chosen algorithm as well as the steps enused by the other algorithms for the same pattern and sequence:
+```
+first occurrence of pattern 'and, and' at i=148 in sequence
+BOYERMOORE  : 39 steps
+BRUTEFORCE  : 167 steps
+HORSPOOL    : 38 steps
+```
 
 ---
 ### Links
