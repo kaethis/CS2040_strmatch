@@ -29,8 +29,9 @@ This program requires the following modules from the Python 3.10 standard librar
 argparse    # parser for command-line options, args and sub-commands
 curser      # terminal handling for character-cell displays
 dataclasses # structured classes for storing data
-match       # mathematical functions (namely, ceil)
+math        # mathematical functions (namely, ceil)
 os          # misc operating system interfaces (namely, file i/o)
+time        # time access and conversions (namely, sleep)
 typing      # support for type hints
 ```
 
@@ -55,6 +56,7 @@ options:
 
 ~created by @kaethis
 ```
+A path to a file containing a sequence of chars is provided as first positional command-line argument `PATH` followed by a pattern of chars as second positional argument `PATTERN` (if `PATTERN` contains whitespace characters, use quotation marks surrounding argument).  The algorithm chosen for the string matching problem is specified using the `--algm ALGORITHM` option, whereby `ALGORITHM` can be `BRUTEFORCE`, `HORSPOOL` or `BOYERMOORE` (`BRUTEFORCE` is used by default if no algorithm specified).
 
 ---
 ### Links
