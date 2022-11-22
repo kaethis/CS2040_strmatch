@@ -5,7 +5,8 @@
 
 ### About
 
-This program ...
+This program features several implementations for [string-searching](https://en.wikipedia.org/wiki/String-searching_algorithmhttps://en.wikipedia.org/wiki/String-searching_algorithm)) 
+ using a naive bruteforce approach, [Horspool's algorithm](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore%E2%80%93Horspool_algorithm) or the [Boyer-Moore string matching algorithm](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm) in attempt to match a pattern with its first occurrence in a sequence of characters.
 
 ---
 ### Contents
