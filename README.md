@@ -62,15 +62,21 @@ For example, the program will attempt to match with the first occurrence of the 
 
 Each char in the pattern will be aligned below the sequence of chars at the beginning of the sequence.  If a char in the pattern matches with a corresponding char in the sequence, that char will be highlighted green before proceeding with the next comparison.  If the pattern matches with an occurrence in the sequence, a match has been found and the program will terminate; otherwise, the pattern will shift by a single character and resume comparisons until no remaining chars are left in the sequence.
 
+https://user-images.githubusercontent.com/8784297/203253076-d0aa7696-bab3-4806-a500-764882ab1cbf.mp4
+
 Alternatively, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using Horspool's string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm HORSPOOL`.
 
 A shift table of distances and corresponding chars from the alphabet used by the pattern and sequence is displayed above the sequence of chars.  The char in the sequence aligned with the end of the pattern is highlighted blue in the shift table.  If a mismatch occurs, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence or no more remaining chars are left in the sequence.
+
+https://user-images.githubusercontent.com/8784297/203253144-271cc296-3f2b-48d1-a291-a23e6d624e56.mp4
 
 Finally, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using the Boyer-Moore string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm BOYERMOORE`.
 
 Similar to Horspool's algorithm, a bad-symbol table of shift distances and corresponding chars from the alphabet, in addition to a good-suffix table of shift distances and corresponding length of the suffix, are displayed above the sequence of chars.  One or more chars in the pattern that match with chars in the sequence, called the suffix, are highlighted green and its length is highlighted blue in the good-suffix table.  The char undergoing comparison in the sequence is highlighted blue in the bad-symbol table.  If a mismatch occurs with no suffix, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern from the bad-symbol table (same as Horspool's algorithm).
 
 If a mismatch occurs and `0 < k < m` chars matched, whereby `k` is the length of the suffix and `m` is the length of the pattern, the pattern is shifted by `d` chars, whereby `d = max(d1, d2)`, `d1 = max((t1 - k), 1)`, `t1` is the shift distance of the corresponding char that caused the mismatch from the bad-symbol table and `d2` is the shift distance of the corresponding suffix length from the good-suffix table.  The distances in the bad-symbol table are displayed as `d1` to reflect these values in such cases.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence or no more remaining chars are left in the sequence.
+
+https://user-images.githubusercontent.com/8784297/203253197-570d77e5-db83-4b7b-a1d7-cb7f9501eaa5.mp4
 
 Upon terminating, the program will output `no occurrence of pattern in sequence` to the console if no match occurred.  Otherwise, the program outputs the index of the first occurrence of the pattern in the sequence of chars.  Regardless of the algorithm chosen or whether a match occurred, the program also outputs the number of steps ensued by the chosen algorithm as well as the steps enused by the other algorithms for the same pattern and sequence:
 ```
