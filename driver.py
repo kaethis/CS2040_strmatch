@@ -16,6 +16,8 @@ import curses
 
 import util
 
+from time import sleep
+
 from strmatch import StringMatcher
 
 
@@ -60,7 +62,7 @@ def prog(stdscr): # -----------------------------------------------------------
 
         win_y, win_x = 1, 2         # Position bad-symbol table top of screen.
 
-        cell_n = len(sm.bsyms)      # Number of elements in bad-symbol table.
+        cell_n = len(sm.bsyms)
 
 
         wbsym = util.Window(\
@@ -82,10 +84,10 @@ def prog(stdscr): # -----------------------------------------------------------
 
             win_y = (wbsym.wdim.y + wbsym.wdim.height + wbsym.wdim.margin)
 
-            win_x = wbsym.wdim.x    # Position good-suffix window directly
-                                    # below bad-symbol table.
+            win_x = wbsym.wdim.x        # Position good-suffix window directly
+                                        # below bad-symbol table.
 
-            cell_n = (sm.m - 1)     # Number of elements in good-suffix table.
+            cell_n = max((sm.m - 1), 1)
 
 
             wgsuf = util.Window(\
@@ -173,7 +175,7 @@ def prog(stdscr): # -----------------------------------------------------------
                                 else max((sm.bsyms[char] - sm.k), 1)
 
 
-                        if (sm.i < sm.n):
+                        if (sm.i < sm.n) and (sm.k < sm.m):
 
                             if (sm.algm == StringMatcher.ALGM_HORSPOOL):
 
@@ -232,7 +234,8 @@ def prog(stdscr): # -----------------------------------------------------------
                         cell_i = ((i * wgsuf.cdim.row_n) + j)
 
 
-                        if (0 <= cell_i < wgsuf.wdim.cell_n):
+                        if (len(sm.gsufs) > 0)\
+                            and (0 <= cell_i < wgsuf.wdim.cell_n):
 
                             k = list(sm.gsufs)[cell_i]
 
@@ -386,6 +389,20 @@ def exit(): # -----------------------------------------------------------------
     global sm
 
 
+    # NOTE: Printing chars to screen immediately after restoring terminal to
+    #       original operating mode from curses can sometimes cause erroneous
+    #       print to occur.  To avoid this, delay main thread for small amount
+    #       of time before proceeding with print statements.
+
+    sleep(0.1)
+
+
+    algms = {\
+        StringMatcher.ALGM_BRUTEFORCE : "BRUTEFORCE",\
+        StringMatcher.ALGM_HORSPOOL   : "HORSPOOL",\
+        StringMatcher.ALGM_BOYERMOORE : "BOYERMOORE"\
+    }
+
     msg_nomatch = "no occurrence of pattern in sequence"
 
     msg_match = "first occurrence of pattern '{}' at i={} in sequence"\
@@ -393,10 +410,34 @@ def exit(): # -----------------------------------------------------------------
 
 
     # If no match occurred, print no occurrence msg; otherwise, print msg w/
-    # index of first occurrence of pattern in sequence of chars.
+    # index of first occurrence of pattern in sequence of chars.  Also print
+    # total number of steps ensued by algorithm chosen:
 
     print(msg_nomatch if (sm.match_i == -1) else msg_match)
-        
+
+    print("{} : {} steps".format(algms[sm.algm].ljust(11), sm.step_n))
+
+
+    # Perform string matching problem using same pattern and sequence of chars
+    # using other algorithms besides one chosen:
+
+    for a in algms:
+
+        if (a != sm.algm):
+
+            s = StringMatcher(sm.seq, sm.ptn, a)
+
+            while not s.step():
+
+                # Ensue steps until algorithm is complete.
+
+                ...
+
+
+            # Print total number of steps ensued by other algorithm:
+
+            print("{} : {} steps".format(algms[s.algm].ljust(11), s.step_n))
+
 
     quit()
 

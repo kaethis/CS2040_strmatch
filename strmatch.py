@@ -67,6 +67,8 @@ class StringMatcher(): # ------------------------------------------------------
         self.match_i = -1           # Index of first occurrence of pattern
                                     # matched in sequence (or -1 if no match).
 
+        self.step_n = 0             # Number of steps ensued by algorithm. 
+
         self.algm = algm            # Algorithm chosen for the string matching
                                     # problem.
 
@@ -104,19 +106,26 @@ class StringMatcher(): # ------------------------------------------------------
 
 
     def step(self) -> bool: # -------------------------------------------------
-        """ This FUNCTION ensues a single iteration of algorithm chosen for the
-            string matching problem.
+        """ This FUNCTION ensues a single step performed by algorithm chosen
+            for string matching problem and returns whether or not algorithm is
+            complete.
 
             NOTE: If pattern matched in sequence, match_i contains index of
                   first occurrence matched in sequence (or -1 if no match).
         """ # -----------------------------------------------------------------
 
-        return self.algms[self.algm]()
+        is_done = self.algms[self.algm]()   # Ensue single step.
+
+        self.step_n += 1                    # Increment number of steps ensued
+                                            # by algorithm.
+
+
+        return is_done
 
 
     def bruteforce(self) -> bool: # -------------------------------------------
-        """ This FUNCTION ensues a single iteration of bruteforce string match
-            algorithm and returns whether or not the algorithm is complete.
+        """ This FUNCTION ensues a single step performed by bruteforce string
+            match algorithm and returns whether or not algorithm is complete.
             
             NOTE: If pattern matched in sequence, match_i contains index of
                   first occurrence matched in sequence (or -1 if no match).
@@ -166,8 +175,8 @@ class StringMatcher(): # ------------------------------------------------------
 
 
     def horspool(self) -> bool: # ---------------------------------------------
-        """ This FUNCTION ensues a single iteration of Horspool string match
-            algorithm and returns whether or not the algorithm is complete.
+        """ This FUNCTION ensues a single step performed by Horspool string
+            match algorithm and returns whether or not algorithm is complete.
             
             NOTE: If pattern matched in sequence, match_i contains index of
                   first occurrence matched in sequence (or -1 if no match).
@@ -219,8 +228,8 @@ class StringMatcher(): # ------------------------------------------------------
 
 
     def boyermoore(self) -> bool: # -------------------------------------------
-        """ This FUNCTION ensues a single iteration of Boyer-Moore string match
-            algorithm and returns whether or not the algorithm is complete.
+        """ This FUNCTION ensues a single step performed by Boyer-Moore string
+            match algorithm and returns whether or not algorithm is complete.
             
             NOTE: If pattern matched in sequence, match_i contains index of
                   first occurrence matched in sequence (or -1 if no match).
