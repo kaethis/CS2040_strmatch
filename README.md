@@ -56,7 +56,17 @@ options:
 
 ~created by @kaethis
 ```
-A path to a file containing a sequence of chars is provided as first positional command-line argument `PATH` followed by a pattern of chars as second positional argument `PATTERN` (if `PATTERN` contains whitespace characters, use quotation marks surrounding argument).  The algorithm chosen for the string matching problem is specified using the `--algm ALGORITHM` option, whereby `ALGORITHM` can be `BRUTEFORCE`, `HORSPOOL` or `BOYERMOORE` (`BRUTEFORCE` is used by default if no algorithm specified).
+A path to a file containing a sequence of chars is provided as first positional command-line argument `PATH` followed by a pattern of chars as second positional argument `PATTERN` (if `PATTERN` contains whitespace characters, use quotation marks surrounding argument).  The algorithm chosen for the string matching problem is specified using the `--algm ALGORITHM` option, whereby `ALGORITHM` can be `BRUTEFORCE`, `HORSPOOL` or `BOYERMOORE` (`BRUTEFORCE` is used by default if no algorithm specified).  Proceed with each ensuing step in the algorithm by pressing any key on the keyboard.
+
+For example, the program will attempt to match with the first occurrence of the pattern *and, and* in a sequence of chars from file *example1.txt* using the default algorithm by entering `python3 driver.py example1.txt "and, and"`.
+
+Each char in the pattern will be aligned below the sequence of chars at the beginning of the sequence.  If a char in the pattern matches with a corresponding char in the sequence, that char will be highlighted green before proceeding with the next comparison.  If the pattern matches with an occurrence in the sequence, a match has been found and the program will terminate; otherwise, the pattern will shift by a single character and resume comparisons until no remaining chars are left in the sequence.
+
+Alternatively, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using Horspool's string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm HORSPOOL`.
+
+A shift table of distances and corresponding chars from the alphabet used by the pattern and sequence will be displayed above the sequence of chars.  The char in the sequence aligned with the end of the pattern will be highlighted blue in the shift table.  When a mismatch occurs, the pattern will by shifted by the distance of the corresponding char aligned with the end of the pattern.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence in the sequence or no more remaining chars are left in the sequence.
+
+
 
 ---
 ### Links
