@@ -24,7 +24,7 @@ The contents of this repository include the following files:
 
 ---
 ### Dependencies
-This program requires the following modules from the Python 3.10 standard library:
+This program was developed using Python 3.10.6 and requires the following modules from the Python 3.10 standard library:
 ```
 argparse    # parser for command-line options, args and sub-commands
 curser      # terminal handling for character-cell displays
@@ -64,7 +64,14 @@ Each char in the pattern will be aligned below the sequence of chars at the begi
 
 Alternatively, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using Horspool's string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm HORSPOOL`.
 
-A shift table of distances and corresponding chars from the alphabet used by the pattern and sequence will be displayed above the sequence of chars.  The char in the sequence aligned with the end of the pattern will be highlighted blue in the shift table.  When a mismatch occurs, the pattern will by shifted by the distance of the corresponding char aligned with the end of the pattern.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence in the sequence or no more remaining chars are left in the sequence.
+A shift table of distances and corresponding chars from the alphabet used by the pattern and sequence is displayed above the sequence of chars.  The char in the sequence aligned with the end of the pattern is highlighted blue in the shift table.  If a mismatch occurs, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence or no more remaining chars are left in the sequence.
+
+Finally, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using the Boyer-Moore string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm BOYERMOORE`.
+
+Similar to Horspool's algorithm, a bad-symbol table of shift distances and corresponding chars from the alphabet, in addition to a good-suffix table of shift distances and corresponding length of the suffix, are displayed above the sequence of chars.  One or more chars in the pattern that match with chars in the sequence are highlighted green and called the suffix and its length is highlighted blue in the good-suffix table.  The char undergoing comparison in the sequence is highlighted blue in the bad-symbol table.  If a mismatch occurs with no suffix, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern from the bad-symbol table.
+
+If a mismatch occurs and `0 < k < m` chars matched, whereby `k` is the length of the suffix and `m` is the length of the pattern, the pattern is shifted by `d` chars, whereby `d = max(d1, d2)`, `d1 = max((t1 - k), 1)`, `t1` is the shift distance of the corresponding char that caused the mismatch from the bad-symbol table and `d2` is the shift distance of the corresponding suffix length from the good-suffix table.  The distances in the bad-symbol table are displayed as `d1` to reflect these values in such cases.
+
 
 
 
