@@ -26,13 +26,13 @@ The contents of this repository include the following files:
 ### Dependencies
 This program was developed using Python 3.10.6 and requires the following modules from the Python 3.10 standard library:
 ```
-argparse    # parser for command-line options, args and sub-commands
-curser      # terminal handling for character-cell displays
-dataclasses # structured classes for storing data
-math        # mathematical functions (namely, ceil)
-os          # misc operating system interfaces (namely, file i/o)
-time        # time access and conversions (namely, sleep)
-typing      # support for type hints
+argparse        # parser for command-line options, args and sub-commands
+curser          # terminal handling for character-cell displays
+dataclasses     # structured classes for storing data
+math            # mathematical functions (namely, ceil)
+os              # misc operating system interfaces (namely, file i/o)
+time            # time access and conversions (namely, sleep)
+typing          # support for type hints
 ```
 
 ---
@@ -58,19 +58,19 @@ options:
 ```
 A path to a file containing a sequence of chars is provided as first positional command-line argument `PATH` followed by a pattern of chars as second positional argument `PATTERN` (if `PATTERN` contains whitespace characters, use quotation marks surrounding argument).  The algorithm chosen for the string matching problem is specified using the `--algm ALGORITHM` option, whereby `ALGORITHM` can be `BRUTEFORCE`, `HORSPOOL` or `BOYERMOORE` (`BRUTEFORCE` is used by default if no algorithm specified).  Proceed with each ensuing step in the algorithm by pressing any key on the keyboard.
 
-For example, the program will attempt to match with the first occurrence of the pattern *and, and* in a sequence of chars from file *example1.txt* using the default algorithm by entering `python3 driver.py example1.txt "and, and"`.
+For example, the program will attempt to match with the first occurrence of the pattern *and, and* in a sequence of chars from file *example1.txt* using the *default algorithm* by entering `python3 driver.py example1.txt "and, and"`.
 
 Each char in the pattern will be aligned below the sequence of chars at the beginning of the sequence.  If a char in the pattern matches with a corresponding char in the sequence, that char will be highlighted green before proceeding with the next comparison.  If the pattern matches with an occurrence in the sequence, a match has been found and the program will terminate; otherwise, the pattern will shift by a single character and resume comparisons until no remaining chars are left in the sequence.
 
 https://user-images.githubusercontent.com/8784297/203253076-d0aa7696-bab3-4806-a500-764882ab1cbf.mp4
 
-Alternatively, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using Horspool's string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm HORSPOOL`.
+Alternatively, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using *Horspool's string matching algorithm* by entering `python3 driver.py example1.txt "and, and" --algm HORSPOOL`.
 
 A shift table of distances and corresponding chars from the alphabet used by the pattern and sequence is displayed above the sequence of chars.  The char in the sequence aligned with the end of the pattern is highlighted blue in the shift table.  If a mismatch occurs, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern.  Comparisons resume after each time the pattern is shifted until the pattern matches with an occurrence or no more remaining chars are left in the sequence.
 
 https://user-images.githubusercontent.com/8784297/203253144-271cc296-3f2b-48d1-a291-a23e6d624e56.mp4
 
-Finally, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using the Boyer-Moore string matching algorithm by entering `python3 driver.py example1.txt "and, and" --algm BOYERMOORE`.
+Finally, the program will attempt to match the pattern *and, and* in a sequence of chars from file *example1.txt* using the *Boyer-Moore string matching algorithm* by entering `python3 driver.py example1.txt "and, and" --algm BOYERMOORE`.
 
 Similar to Horspool's algorithm, a bad-symbol table of shift distances and corresponding chars from the alphabet, in addition to a good-suffix table of shift distances and corresponding length of the suffix, are displayed above the sequence of chars.  One or more chars in the pattern that match with chars in the sequence, called the suffix, are highlighted green and its length is highlighted blue in the good-suffix table.  The char undergoing comparison in the sequence is highlighted blue in the bad-symbol table.  If a mismatch occurs with no suffix, the pattern is shifted by the distance of the corresponding char aligned with the end of the pattern from the bad-symbol table (same as Horspool's algorithm).
 
